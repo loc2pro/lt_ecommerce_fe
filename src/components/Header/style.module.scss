@@ -1,4 +1,51 @@
+.max_width{
+    margin: 0 auto;
+    max-width: 1920px;
+}
 .header {
     height: 100px;
     background: yellow;
+    .header__top{
+        padding: 12px;
+        background-color: black;
+        color: #A2A6B0 ;
+        ul{
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }
+        li{
+            position: relative;
+            font-size: 12px;
+            font-weight: 600;
+            line-height: 18px;
+        }
+        span{
+            color: white;
+        }
+        img{
+            position: absolute;
+        }
+        a{
+            color: white;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            text-decoration-thickness: 2px;
+        }
+        
+
+    }  
 }
+.header__top_iconDown{
+    left: 170px;
+}
+.header__top_iconFacebook{
+    top: -4px;
+    left: 128px;
+}
+.header__top_iconInstagram{
+    top: -4px;
+    left: 154px;
+}
+
+
