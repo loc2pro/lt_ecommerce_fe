@@ -1,0 +1,143 @@
+.productCard {
+  width: 232px;
+  height: 364px;
+  box-shadow: 0 0 0 1px rgba($color: #d2d2d2, $alpha: 0.5);
+  border-radius: 12px;
+  position: relative;
+  padding: 16px;
+  cursor: pointer;
+  &:hover {
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
+    .pseudo {
+      opacity: 1;
+    }
+  }
+
+  &.listLayout {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    display: grid;
+    grid-template-areas:
+      'thumbnail title stock'
+      'review price price';
+    grid-template-columns: 250px minmax(0, 2fr);
+    .thumbnail {
+      margin: unset;
+    }
+    .inStock {
+      align-items: flex-start;
+    }
+    .btnAction{
+      width: 50%;
+    }
+  }
+
+  .inStock {
+    grid-area: stock;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    color: #78a962;
+  }
+  .thumbnail {
+    grid-area: thumbnail;
+    width: 160px;
+    height: 160px;
+    margin: 12px auto 0;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  .reviews {
+    grid-area: review;
+    margin-top: 12px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px;
+    p {
+      color: #a2a6b0;
+      font-size: 12px;
+    }
+  }
+  .title {
+    grid-area: title;
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 16px;
+  }
+  .priceSection {
+    grid-area: price;
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .priceDiscount {
+    font-size: 14px;
+    color: #666666;
+    position: relative;
+    &::after {
+      content: '';
+      // width: 40%;
+      width: 88px;
+      height: 1px;
+      background: #aeb4bd;
+      position: absolute;
+      top: 50%;
+      left: -2px;
+    }
+  }
+  .price {
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 140%;
+  }
+  .pseudo {
+    position: absolute;
+    z-index: 2;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  .btnAction {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 80%;
+    z-index: 3;
+    button {
+      font-weight: 600;
+      border-radius: 99px;
+      color: #fff;
+      font-size: 10px;
+      line-height: 10px;
+      padding: 12px 16px;
+      white-space: nowrap;
+    }
+  }
+  .btnBuy {
+    background: #e06310;
+    &:hover {
+      background: #f14c36;
+    }
+  }
+  .btnAddCart {
+    background: #4081e4;
+    &:hover {
+      background: #025ee7;
+    }
+  }
+}
