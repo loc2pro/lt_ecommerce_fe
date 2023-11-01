@@ -1,51 +1,98 @@
-.max_width{
-    margin: 0 auto;
-    max-width: 1920px;
+@mixin flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .header {
-    height: 100px;
-    background: yellow;
-    .header__top{
-        padding: 12px;
-        background-color: black;
-        color: #A2A6B0 ;
-        ul{
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
-        }
-        li{
-            position: relative;
-            font-size: 12px;
-            font-weight: 600;
-            line-height: 18px;
-        }
-        span{
-            color: white;
-        }
-        img{
-            position: absolute;
-        }
-        a{
-            color: white;
-            text-decoration: underline;
-            text-underline-offset: 4px;
-            text-decoration-thickness: 2px;
-        }
-        
+  height: 100px;
+  background: white;
+}
+.header__top {
+  min-width: inherit;
+  color: #a2a6b0;
+  background-color: black;
+  ul {
+    @include flex;
+    width: inherit;
+    padding: 10px 0;
+    max-width: 1400px;
+    margin-right: auto;
+    margin-left: auto;
+    li {
+      position: relative;
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 18px;
+      &:last-child {
+        color: white;
+        @include flex;
+      }
+      span {
+        color: white;
+      }
+      .header__top_iconDown {
+        position: absolute;
+        left: 170px;
+      }
+      a {
+        color: white;
+        text-decoration: underline;
+        text-underline-offset: 4px;
+        text-decoration-thickness: 2px;
+      }
+    }
+  }
+}
+.wrap_icon_fb_instag > a {
+  margin-left: 8px;
+}
+.header__last {
+  min-width: inherit;
+  .header__last__container {
+    position: relative;
+    width: inherit;
+    max-width: 1400px;
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+}
 
-    }  
+.nav {
+  ul {
+    @include flex;
+    margin-left: 18px;
+    li {
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 21px;
+      letter-spacing: 0px;
+      text-align: center;
+      padding: 8px 12px;
+      &:last-child {
+        color: #0156ff;
+        padding: 8px 28px;
+        border-radius: 50px;
+        border: #0156ff solid 2px;
+      }
+    }
+  }
 }
-.header__top_iconDown{
-    left: 170px;
+.header__last__cartUser {
+  position: absolute;
+  @include flex;
+  right: 0;
+  div{
+    margin-left: 28px;
+  }
 }
-.header__top_iconFacebook{
-    top: -4px;
-    left: 128px;
-}
-.header__top_iconInstagram{
-    top: -4px;
-    left: 154px;
-}
-
-
+// .header__top_iconFacebook {
+//   top: -4px;
+//   left: 128px;
+// }
+// .header__top_iconInstagram {
+//   top: -4px;
+//   left: 154px;
+// }

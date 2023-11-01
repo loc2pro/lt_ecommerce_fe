@@ -5,7 +5,7 @@ import Footer from '@/components/Footer';
 const HomePage = () => {
   return (
     <>
-      <div>HomePage</div>
+      {/* <div>HomePage</div> */}
     </>
   );
 };
