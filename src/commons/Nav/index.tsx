@@ -9,7 +9,7 @@ const index: FunctionComponent<{item: ItemsNav }> =({item})=>{
     const {url, name} = item;
     return (
         <>
-            <li >{name}</li>
+            <div >{name}</div>
         </>
     )
 }

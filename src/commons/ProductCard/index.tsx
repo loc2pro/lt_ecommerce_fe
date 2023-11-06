@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 import styled from './style.module.scss';
 import Image from 'next/image';
-import IconStar from 'public/assets/icon/IconStar';
+import IconStar from 'public/assets/icon/IconStart';
 
 interface IProductCard {
   id: number;

@@ -1,11 +1,13 @@
 import React from 'react';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import Carousel from '@components/Carousel';
+import SectionProduct from '@components/SearchPage/SectionProduct';
+
 
 const HomePage = () => {
   return (
     <>
-      {/* <div>HomePage</div> */}
+      <Carousel />
+      <SectionProduct />
     </>
   );
 };

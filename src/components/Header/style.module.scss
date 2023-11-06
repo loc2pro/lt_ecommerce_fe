@@ -4,7 +4,6 @@
   justify-content: space-between;
 }
 .header {
-  height: 100px;
   background: white;
 }
 .header__top {
@@ -48,6 +47,7 @@
 }
 .header__last {
   min-width: inherit;
+  padding: 12px 0;
   .header__last__container {
     position: relative;
     width: inherit;
@@ -59,24 +59,43 @@
     justify-content: flex-start;
   }
 }
-
+.search__wrap {
+  position: relative;
+  input {
+    padding: 18px;
+    padding-left: 40px;
+    width: 1100px;
+    border: none;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+  
+  }
+  img {
+    position: absolute;
+    right: 4px;
+    top: 18px;
+  }
+}
 .nav {
-  ul {
-    @include flex;
-    margin-left: 18px;
-    li {
-      font-size: 14px;
-      font-weight: 600;
-      line-height: 21px;
-      letter-spacing: 0px;
-      text-align: center;
-      padding: 8px 12px;
-      &:last-child {
-        color: #0156ff;
-        padding: 8px 28px;
-        border-radius: 50px;
-        border: #0156ff solid 2px;
-      }
+  @include flex;
+  margin-left: 18px;
+
+  div {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 21px;
+    letter-spacing: 0px;
+    text-align: center;
+    padding: 8px 12px;
+    &:last-child {
+      color: #0156ff;
+      padding: 6px 28px;
+      border-radius: 50px;
+      border: #0156ff solid 2px;
+    }
+    &:hover {
+      cursor: pointer;
     }
   }
 }
@@ -84,15 +103,7 @@
   position: absolute;
   @include flex;
   right: 0;
-  div{
+  div {
     margin-left: 28px;
   }
 }
-// .header__top_iconFacebook {
-//   top: -4px;
-//   left: 128px;
-// }
-// .header__top_iconInstagram {
-//   top: -4px;
-//   left: 154px;
-// }
