@@ -1,12 +1,30 @@
-import React from 'react';
 import styles from './style.module.scss';
 import dataHeader from './dataHeader';
 import Image from 'next/image';
 import Link from 'next/link';
 import Nav from '@/commons/Nav';
+import React, { useEffect, useState } from 'react';
+
+interface IHeader {
+  openHours: string;
+  address: string;
+  contact: string;
+  logoTitle: string;
+  logoUrl: string;
+  navItems: string;
+  avataUserUrl: string;
+  titleUser: string;
+}
+
 const Header = () => {
   const { openHours, address, contact, logoTitle, logoUrl, navItems, avataUserUrl, titleUser } = dataHeader[0];
-
+  const [isSearch, setIsSearch] = useState<boolean>(true);
+  const onClickSearchIcon = () => {
+    setIsSearch(isSearch ? false : true);
+  };
+  // useEffect(() => {
+  //   onClickSearchIcon();
+  // }, [isSearch]);
   return (
     <header className={`${styles.header} ${styles.max_width}`}>
       <div className={styles.header__top}>
@@ -23,7 +41,7 @@ const Header = () => {
             />
           </li>
           <li>
-            Visit our showroom in {address} <a href="tel:0987556203"> Contact Us </a>
+            Visit our showroom in {address} <a href={`tel:${contact}`}>Contact Us</a>
           </li>
           <li>
             Call Us: {contact}
@@ -57,19 +75,46 @@ const Header = () => {
           <Link href={'/'}>
             <Image src={logoUrl} alt={logoTitle} width={84} height={68} className={styles.header__logo} priority />
           </Link>
-          <nav className={styles.nav}>
-            <ul>
+          {isSearch ? (
+            <nav className={styles.nav}>
               {navItems.map((item) => {
                 return <Nav item={item} />;
               })}
-            </ul>
-          </nav>
+            </nav>
+          ) : (
+            <div className={styles.search__wrap}>
+              <input type="text" placeholder="Search entiere store here..." />
+              <img
+                src="/assets/icon/gg_search.svg"
+                alt="Icon Search"
+                width={20}
+                height={20}
+                style={{ cursor: 'pointer' }}
+              />
+            </div>
+          )}
           <div className={styles.header__last__cartUser}>
-            <div>
-              <img src="/assets/icon/gg_search.svg" alt="Icon Search" width={20} height={20} />
+            <div onClick={() => onClickSearchIcon()}>
+              {isSearch ? (
+                <img
+                  src="/assets/icon/gg_search.svg"
+                  alt="Icon Search"
+                  width={20}
+                  height={20}
+                  style={{ cursor: 'pointer' }}
+                />
+              ) : (
+                <img
+                  src="/assets/icon/close.svg"
+                  alt="Icon Close"
+                  width={19}
+                  height={19}
+                  style={{ cursor: 'pointer' }}
+                />
+              )}
             </div>
             <div>
-              <img src="/assets/icon/shopping-cart.svg" alt="Icon art" width={32} height={32} />
+              <img src="/assets/icon/shopping-cart.svg" alt="Icon Cart" width={32} height={32} />
             </div>
             <div>
               <Image src={avataUserUrl} alt={titleUser} width={36} height={36} />

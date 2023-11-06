@@ -6,6 +6,7 @@ import SSRProvider from 'react-bootstrap/SSRProvider';
 import '../style/global.scss';
 import { StateProvider } from '@/store';
 import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const shouldIndexing = false;
@@ -20,7 +21,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         </Head>
         <Header />
         <Component {...pageProps} />
-        <footer />
+        <Footer />
       </StateProvider>
     </SSRProvider>
   );

@@ -5,7 +5,6 @@ import SectionProduct from '@components/SearchPage/SectionProduct';
 const search = () => {
   return (
     <div>
-      search page
       <Carousel />
       <SectionProduct />
     </div>
