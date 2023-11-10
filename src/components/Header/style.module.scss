@@ -10,36 +10,87 @@
   min-width: inherit;
   color: #a2a6b0;
   background-color: black;
-  ul {
+  .header__top_wrap {
     @include flex;
     width: inherit;
     padding: 10px 0;
     max-width: 1400px;
     margin-right: auto;
     margin-left: auto;
-    li {
-      position: relative;
-      font-size: 12px;
-      font-weight: 600;
-      line-height: 18px;
-      &:last-child {
-        color: white;
-        @include flex;
-      }
-      span {
-        color: white;
-      }
-      .header__top_iconDown {
-        position: absolute;
-        left: 170px;
-      }
-      a {
-        color: white;
-        text-decoration: underline;
-        text-underline-offset: 4px;
-        text-decoration-thickness: 2px;
-      }
+  }
+}
+.header__top_wrap > div {
+  position: relative;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 18px;
+  &:first-child {
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+
+    a {
+      text-decoration: none;
     }
+  }
+  &:last-child {
+    color: white;
+    @include flex;
+  }
+
+  a {
+    color: white;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 2px;
+  }
+}
+.header__top_wrap > div:first-child > .header__top_iconDown {
+  position: absolute;
+  left: 170px;
+  transition: all 0.3s ease-in-out;
+}
+.shop__info {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  opacity: 1;
+  width: 300px;
+  background-color: white;
+  top: 32px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+  div {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding: 8px 8px 8px 50px;
+    &:last-child {
+      padding-left: 26px;
+      padding-bottom: 16px;
+    }
+    span {
+      color: black;
+    }
+    img {
+      position: absolute;
+      left: 8px;
+      top: 0;
+    }
+  }
+
+  hr {
+    width: 100%;
+    border: 1px solid #a2a6b0;
+  }
+  .arrow__up {
+    position: absolute;
+    top: -10px;
+    left: 6px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid rgb(255, 255, 255);
   }
 }
 .wrap_icon_fb_instag > a {
@@ -69,7 +120,6 @@
     font-size: 14px;
     font-weight: 400;
     line-height: 21px;
-  
   }
   img {
     position: absolute;
@@ -106,4 +156,18 @@
   div {
     margin-left: 28px;
   }
+}
+.opacity__0 {
+  opacity: 0;
+  z-index: 0;
+}
+.opacity__1 {
+  opacity: 1;
+  z-index: 5;
+}
+.transformIconUp {
+  transform: rotate(0);
+}
+.transformIconDown {
+  transform: rotate(180deg);
 }
