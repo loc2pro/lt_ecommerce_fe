@@ -3,8 +3,10 @@ import dataHeader from './dataHeader';
 import Image from 'next/image';
 import Link from 'next/link';
 import Nav from '@/commons/Nav';
-import React, { useEffect, useState } from 'react';
-// import ProductInCard form 
+import React, { useEffect, useState, useContext } from 'react';
+import { deleteProduct } from '../../productStore/actions';
+import { store, dispatchIns, IProductCard } from '../../productStore/index';
+// import ProductInCard form
 interface IHeader {
   openHours: string;
   address: string;
@@ -21,6 +23,17 @@ const Header = () => {
   const { openHours, address, phone, email, logoTitle, logoUrl, navItems, avataUserUrl, titleUser } = dataHeader[0];
   const [isSearch, setIsSearch] = useState<boolean>(true);
   const [mountShopInfo, setMountShopInfo] = useState<boolean>(false);
+  const { state } = useContext(store);
+  const totalProduct = () => {
+    let total: number = 0;
+    state.products.map((product: IProductCard) => {
+      total += product.price * product.quantity;
+    });
+    return total;
+  };
+  const onClickDelProductInCart = (product: IProductCard) => {
+    dispatchIns(deleteProduct(product));
+  };
   const onClickSearchIcon = () => {
     setIsSearch(isSearch ? false : true);
   };
@@ -165,9 +178,29 @@ const Header = () => {
                 />
               )}
             </div>
-            <div>
+            <div className={styles.cart_wrap}>
               <img src="/assets/icon/shopping-cart.svg" alt="Icon Cart" width={32} height={32} />
-              <span>{}</span>
+              <span>{state.shoppingCart}</span>
+              <div className={styles.my_cart}>
+                <h3>My Cart</h3>
+                <span>{state.shoppingCart} item in cart</span>
+                <Link href={'/'}>
+                  <button>View or Edit Your Cart</button>
+                </Link>
+                <div className={styles.cart__productInCart}>
+                  {state.products.map((product: IProductCard, index: number) => (
+                    <div key={index}>
+                      <b>{product.quantity}x</b>
+                      <Image src={product.image} alt={product.title} width={160} height={160} />
+                      <span>{product.title}</span>
+                      <button>x</button>
+                    </div>
+                  ))}
+                </div>
+                <span>Subtotal: <b>{totalProduct().toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}</b></span>
+                <button><link rel="stylesheet" href="/" />Go to Checkout</button>
+                <div className={styles.cart__arrow__up}></div>
+              </div>
             </div>
             <div>
               <Image src={avataUserUrl} alt={titleUser} width={36} height={36} />

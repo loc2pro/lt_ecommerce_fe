@@ -1,10 +1,10 @@
-import React, { FunctionComponent, useReducer  } from 'react';
+import React, { FunctionComponent, useContext , useEffect} from 'react';
 import classNames from 'classnames';
 import styled from './style.module.scss';
 import Image from 'next/image';
 import IconStar from 'public/assets/icon/IconStart';
 import { addProduct, deleteProduct } from '../../productStore/actions';
-import reducer, {initState} from '../../productStore/reducers';
+import { store, dispatchIns } from '../../productStore/index';
 interface IProductCard {
   id: number;
   image: string;
@@ -17,14 +17,18 @@ interface IProductCard {
 }
 const index: FunctionComponent<{ product: IProductCard; gridLayout?: boolean }> = ({ product, gridLayout }) => {
   const { id, image, title, price, priceDiscount, inStock, reviews } = product;
-  const [state, dispatch] = useReducer(reducer, initState);
+  const { state } = useContext(store);
+  
+  useEffect(() => {
+    // console.log(state);
+  }, [state]);
+
   const wrapProductCard = classNames({
     [styled.productCard]: true,
     [styled.listLayout]: !gridLayout,
   });
-  const handleAddToCart = (product : IProductCard) => {
-    dispatch(addProduct(product));
-    console.log(state?.products)
+  const handleAddToCart = (product: IProductCard) => {
+    dispatchIns(addProduct(product));
   };
   const onClickProduct = (id: number) => {
     window.location.href = `/productdetai/${id}`;
