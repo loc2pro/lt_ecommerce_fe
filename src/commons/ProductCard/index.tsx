@@ -13,6 +13,7 @@ interface IProductCard {
   priceDiscount: number;
   inStock: number;
   reviews: number;
+  quantity: number;
 }
 const index: FunctionComponent<{ product: IProductCard; gridLayout?: boolean }> = ({ product, gridLayout }) => {
   const { id, image, title, price, priceDiscount, inStock, reviews } = product;

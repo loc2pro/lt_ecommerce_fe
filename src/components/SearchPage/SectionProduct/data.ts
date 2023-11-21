@@ -7,6 +7,7 @@ export const ListProductMockup = [
     priceDiscount: 200000,
     inStock: 2,
     reviews: 3,
+    quantity: 0,
   },
   {
     id: 2,
@@ -16,6 +17,7 @@ export const ListProductMockup = [
     priceDiscount: 200000,
     inStock: 2,
     reviews: 5,
+    quantity: 0,
   },
   {
     id: 3,
@@ -25,6 +27,7 @@ export const ListProductMockup = [
     priceDiscount: 200000,
     inStock: 2,
     reviews: 4,
+    quantity: 0,
   },
   {
     id: 4,
@@ -34,6 +37,7 @@ export const ListProductMockup = [
     priceDiscount: 200000,
     inStock: 2,
     reviews: 1,
+    quantity: 0,
   },
   {
     id: 5,
@@ -43,6 +47,7 @@ export const ListProductMockup = [
     priceDiscount: 200000,
     inStock: 2,
     reviews: 2,
+    quantity: 0,
   },
   {
     id: 6,
@@ -52,6 +57,7 @@ export const ListProductMockup = [
     priceDiscount: 200000,
     inStock: 0,
     reviews: 1,
+    quantity: 0,
   },
   {
     id: 7,
@@ -61,6 +67,7 @@ export const ListProductMockup = [
     priceDiscount: 200000,
     inStock: 2,
     reviews: 5,
+    quantity: 0,
   },
   {
     id: 8,
@@ -70,6 +77,7 @@ export const ListProductMockup = [
     priceDiscount: 200000,
     inStock: 2,
     reviews: 5,
+    quantity: 0,
   },
   {
     id: 9,
@@ -79,6 +87,7 @@ export const ListProductMockup = [
     priceDiscount: 200000,
     inStock: 2,
     reviews: 5,
+    quantity: 0,
   },
   {
     id: 10,
@@ -88,6 +97,7 @@ export const ListProductMockup = [
     priceDiscount: 200000,
     inStock: 2,
     reviews: 5,
+    quantity: 0,
   },
   {
     id: 11,
@@ -97,5 +107,6 @@ export const ListProductMockup = [
     priceDiscount: 200000,
     inStock: 2,
     reviews: 5,
+    quantity: 0,
   },
 ];
