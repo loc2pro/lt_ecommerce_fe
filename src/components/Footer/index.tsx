@@ -6,15 +6,15 @@ const index = () => {
   return (
     <footer className={styled.footer}>
       <section className={styled.widget__footer}>
-        {footer.widgetsHeader.map((widget) => {
+        {footer.widgetsHeader.map((widget, index) => {
           return (
-            <div>
+            <div key={index}>
               <img src={widget.urlImg} alt={widget.title} />
               <span>{widget.title}</span>
               <p>{widget.context}</p>
             </div>
           );
-        })}
+          })}
       </section>
       <div className={styled.footer__container}>
         <div className={styled.footer__central_wrap}>
@@ -29,13 +29,13 @@ const index = () => {
             </div>
           </div>
           <div className={styled.footer__central__last}>
-            {footer.headerCenter.map((item) => {
+            {footer.headerCenter.map((item, index) => {
               return (
-                <ul>
+                <ul key={index}>
                   <span>{item.title}</span>
-                  {item.parts.map((part) => {
+                  {item.parts.map((part, index) => {
                     return (
-                      <li>
+                      <li key={index}>
                         <a href={part.url}>{part.partTitle}</a>
                       </li>
                     );

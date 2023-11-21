@@ -1,8 +1,10 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useContext , useEffect} from 'react';
 import classNames from 'classnames';
 import styled from './style.module.scss';
 import Image from 'next/image';
 import IconStar from 'public/assets/icon/IconStart';
+import { addProduct, deleteProduct } from '../../productStore/actions';
+import { store, dispatchIns } from '../../productStore/index';
 
 interface IProductCard {
   id: number;
@@ -12,15 +14,23 @@ interface IProductCard {
   priceDiscount: number;
   inStock: number;
   reviews: number;
+  quantity: number;
 }
 const index: FunctionComponent<{ product: IProductCard; gridLayout?: boolean }> = ({ product, gridLayout }) => {
   const { id, image, title, price, priceDiscount, inStock, reviews } = product;
+  const { state } = useContext(store);
+  
+  useEffect(() => {
+    // console.log(state);
+  }, [state]);
 
   const wrapProductCard = classNames({
     [styled.productCard]: true,
     [styled.listLayout]: !gridLayout,
   });
-
+  const handleAddToCart = (product: IProductCard) => {
+    dispatchIns(addProduct(product));
+  };
   const onClickProduct = (id: number) => {
     window.location.href = `/productdetai/${id}`;
   };
@@ -37,7 +47,7 @@ const index: FunctionComponent<{ product: IProductCard; gridLayout?: boolean }> 
   };
 
   return (
-    <div className={wrapProductCard} onClick={() => onClickProduct(id)}>
+    <div className={wrapProductCard} onClick={() => handleAddToCart(product)}>
       <div className={styled.pseudo}>
         <div className={styled.btnAction}>
           <button className={styled.btnBuy}>Mua</button>
