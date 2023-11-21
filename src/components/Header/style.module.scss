@@ -10,38 +10,90 @@
   min-width: inherit;
   color: #a2a6b0;
   background-color: black;
-  ul {
+  .header__top_wrap {
     @include flex;
     width: inherit;
     padding: 10px 0;
     max-width: 1400px;
     margin-right: auto;
     margin-left: auto;
-    li {
-      position: relative;
-      font-size: 12px;
-      font-weight: 600;
-      line-height: 18px;
-      &:last-child {
-        color: white;
-        @include flex;
-      }
-      span {
-        color: white;
-      }
-      .header__top_iconDown {
-        position: absolute;
-        left: 170px;
-      }
-      a {
-        color: white;
-        text-decoration: underline;
-        text-underline-offset: 4px;
-        text-decoration-thickness: 2px;
-      }
-    }
   }
 }
+.header__top_wrap > div {
+  position: relative;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 18px;
+  &:first-child {
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+
+    a {
+      text-decoration: none;
+    }
+  }
+  &:last-child {
+    color: white;
+    @include flex;
+  }
+
+  a {
+    color: white;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 2px;
+  }
+}
+.header__top_wrap > div:first-child > .header__top_iconDown {
+  position: absolute;
+  left: 170px;
+  transition: all 0.3s ease-in-out;
+}
+.shop__info {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  opacity: 1;
+  width: 300px;
+  background-color: white;
+  top: 32px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+  div {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding: 8px 8px 8px 50px;
+    &:last-child {
+      padding-left: 26px;
+      padding-bottom: 16px;
+    }
+    span {
+      color: black;
+    }
+    img {
+      position: absolute;
+      left: 8px;
+      top: 0;
+    }
+  }
+
+  hr {
+    width: 100%;
+    border: 1px solid #a2a6b0;
+  }
+  .arrow__up {
+    position: absolute;
+    top: -10px;
+    left: 6px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid rgb(255, 255, 255);
+  }
+}
+
 .wrap_icon_fb_instag > a {
   margin-left: 8px;
 }
@@ -69,7 +121,6 @@
     font-size: 14px;
     font-weight: 400;
     line-height: 21px;
-  
   }
   img {
     position: absolute;
@@ -103,7 +154,137 @@
   position: absolute;
   @include flex;
   right: 0;
-  div {
-    margin-left: 28px;
+  > div {
+    padding-left: 28px;
   }
+}
+.cart_wrap {
+  position: relative;
+  cursor: pointer;
+  
+  > span {
+    position: absolute;
+    font-weight: 600;
+
+    color: #0156ff;
+  }
+  &:hover{
+   .my_cart{
+    opacity: 1;
+    z-index: 10;
+   }
+  }
+  .my_cart {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    opacity: 0;
+    width: 300px;
+    background-color: white;
+    top: 44px;
+    z-index: 0;
+    right: 0;
+    transition: ease-in 0.3s;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    padding-bottom: 20px;
+    
+    h3 {
+      padding-top: 20px;
+    }
+    > span {
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 18px;
+      padding: 12px;
+    }
+    > button {
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 21px;
+      letter-spacing: 0px;
+      text-align: center;
+      padding: 8px 70px;
+      color: white;
+      background-color: #0156ff;
+      border-radius: 50px;
+    }
+    a > button {
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 21px;
+      letter-spacing: 0px;
+      text-align: center;
+      color: #0156ff;
+      padding: 8px 48px;
+      border-radius: 50px;
+      border: #0156ff solid 2px;
+    }
+  }
+}
+.cart__arrow__up {
+  position: absolute;
+  top: -10px;
+  right: 20px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid rgba(10, 10, 10, 0.253);
+}
+.cart__productInCart {
+  max-height: 450px;
+  overflow: auto;
+
+  > div {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 20px;
+    margin-left: 20px;
+    b {
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 25px;
+      letter-spacing: 0px;
+    }
+    span {
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 20px;
+      letter-spacing: 0px;
+      text-align: left;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    img {
+      object-fit: cover;
+      width: 65px;
+      height: 65px;
+      margin: 14px;
+    }
+    button {
+      padding: 20px;
+      font-size: 20px;
+      border-radius: 100%;
+      color: #a2a6b0;
+    }
+  }
+}
+.opacity__0 {
+  opacity: 0;
+  z-index: 0;
+}
+.opacity__1 {
+  opacity: 1;
+  z-index: 5;
+}
+.transformIconUp {
+  transform: rotate(0);
+}
+.transformIconDown {
+  transform: rotate(180deg);
 }
