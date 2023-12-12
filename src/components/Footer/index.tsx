@@ -51,7 +51,7 @@ const index = () => {
               <li>{footer.address.friday}</li>
               <li>{footer.address.saturday}</li>
               <li>{footer.address.eMail}</li>
-            </ul>
+            </ul>   
           </div>
         </div>
         <div className={styled.footer__last}>

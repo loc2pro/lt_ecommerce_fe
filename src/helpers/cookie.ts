@@ -36,20 +36,21 @@ export function removeCookie(name: string) {
 }
 
 export const getDomainName = () => {
-    const hostName = window.location.hostname
-    return hostName.substring(hostName.lastIndexOf(".", hostName.lastIndexOf(".") - 1) + 1);
-  }
+  const hostName = window.location.hostname;
+  return hostName.substring(hostName.lastIndexOf('.', hostName.lastIndexOf('.') - 1) + 1);
+};
 
 
 export const deleteAllCookies = () => {
-    const cookies = document.cookie.split(";");
-    for (let i = 0; i < cookies.length; i++) {
-      let cookie = cookies[i];
-      let eqPos = cookie.indexOf("=");
-      let name = eqPos > -1 ? cookie.substring(0, eqPos) : cookie;
-      document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;domain=.${getDomainName()};path=/`;
-      document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;domain=${getDomainName()};path=/`;
-      document.cookie.split(";").forEach(function (c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
-  
-    }
+  const cookies = document.cookie.split(';');
+  for (let i = 0; i < cookies.length; i++) {
+    let cookie = cookies[i];
+    let eqPos = cookie.indexOf('=');
+    let name = eqPos > -1 ? cookie.substring(0, eqPos) : cookie;
+    document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;domain=.${getDomainName()};path=/`;
+    document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;domain=${getDomainName()};path=/`;
+    document.cookie.split(';').forEach(function (c) {
+      document.cookie = c.replace(/^ +/, '').replace(/=.*/, '=;expires=' + new Date().toUTCString() + ';path=/');
+    });
   }
+};

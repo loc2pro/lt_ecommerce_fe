@@ -10,6 +10,7 @@ export interface IProductCard {
   inStock: number;
   reviews: number;
   quantity: number;
+  brand: string;
 }
 
 interface IState {
@@ -40,6 +41,7 @@ const StateProductProvider = ({ children }: any) => {
             priceDiscount: action.payload.priceDiscount,
             inStock: action.payload.inStock,
             reviews: action.payload.reviews,
+            brand: action.payload.brand,
             quantity: 1,
           };
           return {

@@ -8,6 +8,7 @@ interface IProductCard {
   inStock: number;
   reviews: number;
   quantity: number;
+  brand: string;
 }
 
 export const addProduct = (product: IProductCard) => {
