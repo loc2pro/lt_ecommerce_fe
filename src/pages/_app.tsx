@@ -9,6 +9,7 @@ import { StateProductProvider } from '@/productStore';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
+
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const shouldIndexing = false;
   //use State store

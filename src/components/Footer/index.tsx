@@ -2,8 +2,6 @@ import React from 'react';
 import styled from './style.module.scss';
 import footer from './data';
 import Image from 'next/image';
-
-
 const index = () => {
   return (
     <footer className={styled.footer}>
@@ -16,7 +14,7 @@ const index = () => {
               <p>{widget.context}</p>
             </div>
           );
-        })}
+          })}
       </section>
       <div className={styled.footer__container}>
         <div className={styled.footer__central_wrap}>
@@ -53,7 +51,7 @@ const index = () => {
               <li>{footer.address.friday}</li>
               <li>{footer.address.saturday}</li>
               <li>{footer.address.eMail}</li>
-            </ul>
+            </ul>   
           </div>
         </div>
         <div className={styled.footer__last}>

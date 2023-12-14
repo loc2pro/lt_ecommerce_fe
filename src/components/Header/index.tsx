@@ -59,6 +59,7 @@ const Header = () => {
               onClick={() => handleShopInfo()}
               priority
             />
+
             <div className={`${styles.shop__info} ${mountShopInfo ? styles.opacity__1 : styles.opacity__0}`}>
               <div>
                 <Image
@@ -156,6 +157,7 @@ const Header = () => {
                 height={20}
                 style={{ cursor: 'pointer' }}
               />
+
             </div>
           )}
           <div className={styles.header__last__cartUser}>

@@ -121,6 +121,7 @@
     font-size: 14px;
     font-weight: 400;
     line-height: 21px;
+
   }
   img {
     position: absolute;
@@ -139,6 +140,7 @@
     letter-spacing: 0px;
     text-align: center;
     padding: 8px 12px;
+    transition: 0.3s ease-in-out;
     &:last-child {
       color: #0156ff;
       padding: 6px 28px;
@@ -147,6 +149,9 @@
     }
     &:hover {
       cursor: pointer;
+      box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.4);
+      border-radius: 50px;
+
     }
   }
 }
@@ -154,6 +159,7 @@
   position: absolute;
   @include flex;
   right: 0;
+
   > div {
     padding-left: 28px;
   }
@@ -183,7 +189,7 @@
     width: 300px;
     background-color: white;
     top: 44px;
-    z-index: 0;
+    z-index: -1;
     right: 0;
     transition: ease-in 0.3s;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
@@ -276,7 +282,7 @@
 }
 .opacity__0 {
   opacity: 0;
-  z-index: 0;
+  z-index: -1;
 }
 .opacity__1 {
   opacity: 1;
