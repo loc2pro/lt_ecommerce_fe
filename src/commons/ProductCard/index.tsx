@@ -32,8 +32,7 @@ const index: FunctionComponent<{ product: IProductCard; gridLayout?: boolean }> 
   const handleAddToCart = (product: IProductCard) => {
     dispatchIns(addProduct(product));
   };
-  const onClickProduct = (id: number) => {
-  };
+  const onClickProduct = (id: number) => {};
   const ReviewSection = () => {
     let listStar = new Array(5).fill('').map((_, i) => i + 1);
     return (
@@ -47,7 +46,15 @@ const index: FunctionComponent<{ product: IProductCard; gridLayout?: boolean }> 
   };
 
   return (
-    <Link href={`/productdetai/${brand}/${id}`}>
+    <Link
+      href={{
+        pathname: `/productdetai`,
+        query: {
+          id: `${id}`,
+          brand: `${brand}`,
+        },
+      }}
+    >
       <div className={wrapProductCard} onClick={() => onClickProduct(id)}>
         <div className={styled.pseudo}>
           <div className={styled.btnAction}>

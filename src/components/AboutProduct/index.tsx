@@ -1,44 +1,25 @@
+'use client';
 import React, { FunctionComponent } from 'react';
 import styled from './style.module.scss';
 import { mockupData } from './data';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
-export const getPathNameDomain = () => {
-  if (typeof window !== 'undefined') {
-    const pathname = window.location.pathname;
-    const parts = pathname.split('productdetai/');
-    return parts.length > 1 ? parts[1] : null;
-  }
-  return null;
-};
-console.log(getPathNameDomain());
-interface IProductCard {
-  id: number;
-  image: string;
-  description: string;
-  price: number;
-  priceDiscount: number;
-  inStock: number;
-  reviews: number;
-  quantity: number;
-  brand: string;
-  modelName: string;
-  company: string;
-  operatingSystem: string;
-  processorCompany: string;
-  processorModel: string[];
-  graphicsCard: string[];
-  memory: string;
-  storage: string;
-  colors: string[];
-  sku: string;
-  imgSliders: string[];
+import { useSearchParams } from 'next/navigation';
+import CurentBox from '@/commons/CurentBox';
+import Details from '@/commons/Details';
+import Specs from '@/commons/Specs';
+interface IsearchParams {
+  idProduct: string;
+  brandProduct: string;
 }
 
-const index = () => {
-  const [firstProduct] = mockupData || [];
+export default function index() {
+  const searchParams = useSearchParams()!;
+  const idProduct = searchParams.get('id');
+  const brandProduct = searchParams.get('brand');
 
+  const data = { idProduct: idProduct || '', brandProduct: brandProduct || '' };
   const {
     id,
     modelName,
@@ -56,19 +37,17 @@ const index = () => {
     sku,
     imgSliders,
     description,
-  } = firstProduct || {};
-
+  } = mockupData[parseInt(data.idProduct)] || {};
   const [activeIndex, setActiveIndex] = useState(0);
-  const [activeColor, setActiveColor] = useState(0);
+
   const [activeOwlDot, setActiveOwlDot] = useState(0);
   const [activeOwlDotBaner, setActiveOwlDotBaner] = useState(0);
-  const [activeImg, setActiveImg] = useState(`${imgSliders[0].url}`);
+  const [activeImg, setActiveImg] = useState('');
+
   const addActiveIndex = (index: number) => {
     setActiveIndex(index);
   };
-  const addActiveColor = (index: number) => {
-    setActiveColor(index);
-  };
+
   const addActiveOwlDot = (index: number) => {
     setActiveOwlDot(index);
   };
@@ -76,7 +55,7 @@ const index = () => {
     setActiveOwlDotBaner(index);
   };
   const [quantity, setQuantity] = useState(1);
-  const onChangeQuantity = (signal: String) => {
+  const onChangeQuantity = (signal: string) => {
     let curentQuantity = quantity;
     if (signal === 'UP') {
       curentQuantity++;
@@ -98,13 +77,13 @@ const index = () => {
         <div className={styled.section__top}>
           <div className={styled.about_product_breadcrumb}>
             <div className={activeIndex === 0 ? styled.active : ''} onClick={() => addActiveIndex(0)}>
-              <Link href="#">About Product</Link>
+              About Product
             </div>
             <div className={activeIndex === 1 ? styled.active : ''} onClick={() => addActiveIndex(1)}>
-              <Link href="#">Details</Link>
+              Details
             </div>
             <div className={activeIndex === 2 ? styled.active : ''} onClick={() => addActiveIndex(2)}>
-              <Link href="#">Specs</Link>
+              Specs
             </div>
           </div>
           <div className={styled.section__top_bill}>
@@ -161,20 +140,15 @@ const index = () => {
               </div>
               <h3>{modelName}</h3>
               <p>Be the first to review this product</p>
-              <span className={styled.product_detai_description}>{description}</span>
-              <ul className={styled.product_detai_color}>
-                {colors.map((color, index) => {
-                  return (
-                    <li
-                      key={index}
-                      className={activeColor === index ? styled.activeColor : ''}
-                      onClick={() => addActiveColor(index)}
-                    >
-                      <span style={{ background: `${color}` }}></span>
-                    </li>
-                  );
-                })}
-              </ul>
+
+              {activeIndex === 0 ? (
+                <CurentBox colors={colors} description={description} />
+
+              ) : activeIndex === 1 ? (
+                <Details colors={colors} description={description} />
+              ) : (
+                <Specs colors={colors} description={description} />
+              )}
               <div className={styled.product_detai_sku}>
                 <span>
                   <b>Have a Question? </b> <Link href="#"> Contact Us </Link>
@@ -186,7 +160,7 @@ const index = () => {
           </div>
           <div className={styled.product_image}>
             <Image
-              src={activeImg}
+              src={activeImg === '' ? '/assets/image/ram01.png' : activeImg}
               width={250}
               height={440}
               alt="Picture of the author"
@@ -200,20 +174,20 @@ const index = () => {
               <img src="/assets/icon/mail.svg" alt="Mail Icon" />
             </div>
             <div className={styled.owl__dots}>
-              {imgSliders.map((img, index) => {
-                return (
-                  <button
-                    className={activeOwlDot === index ? styled.activeOwlDot : ''}
-                    key={index}
-                    onClick={() => {
-                      getUrlMainImg(index);
-                      addActiveOwlDot(index);
-                    }}
-                  >
-                    <span></span>
-                  </button>
-                );
-              })}
+              {Array.isArray(imgSliders) && imgSliders.length > 0
+                ? imgSliders.map((img, index) => (
+                    <button
+                      className={activeOwlDot === index ? styled.activeOwlDot : ''}
+                      key={index}
+                      onClick={() => {
+                        getUrlMainImg(index);
+                        addActiveOwlDot(index);
+                      }}
+                    >
+                      <span></span>
+                    </button>
+                  ))
+                : null}
             </div>
           </div>
         </div>
@@ -304,25 +278,29 @@ const index = () => {
             <li>
               <Image src="/assets/image/intel01.png" width={136} height={136} alt="Picture of the author"></Image>
               <span>
-                <b>Intel® Core™ i7</b> processor with the upmost computing power to bring you an unparalleled gaming experience.
+                <b>Intel® Core™ i7</b> processor with the upmost computing power to bring you an unparalleled gaming
+                experience.
               </span>
             </li>
             <li>
               <Image src="/assets/image/rtx02.png" width={136} height={136} alt="Picture of the author"></Image>
               <span>
-                The new <b>GeForce® RTX SUPER™</b> Series has more cores and higher clocks for superfast performance compared to previous-gen GPUs.
+                The new <b>GeForce® RTX SUPER™</b> Series has more cores and higher clocks for superfast performance
+                compared to previous-gen GPUs.
               </span>
             </li>
             <li>
               <Image src="/assets/image/ssd03.png" width={136} height={136} alt="Picture of the author"></Image>
               <span>
-                Unleash the full potential with the latest <b>SSD technology</b>, the NVM Express. 6 times faster than traditional SATA SSD.
+                Unleash the full potential with the latest <b>SSD technology</b>, the NVM Express. 6 times faster than
+                traditional SATA SSD.
               </span>
             </li>
             <li>
               <Image src="/assets/image/ram04.png" width={136} height={136} alt="Picture of the author"></Image>
               <span>
-                Featuring the latest <b> 10th Gen Intel® Core™ </b> processors, memory can support up to DDR4 2933MHz to delivers an unprecedented gaming experience.
+                Featuring the latest <b> 10th Gen Intel® Core™ </b> processors, memory can support up to DDR4 2933MHz to
+                delivers an unprecedented gaming experience.
               </span>
             </li>
           </ul>
@@ -330,6 +308,4 @@ const index = () => {
       </section>
     </>
   );
-};
-
-export default index;
+}
