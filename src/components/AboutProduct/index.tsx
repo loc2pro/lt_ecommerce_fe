@@ -32,6 +32,7 @@ export default function index() {
     memory,
     storage,
     price,
+    display,
     priceDiscount,
     colors,
     sku,
@@ -145,7 +146,15 @@ export default function index() {
                 <CurentBox colors={colors} description={description} />
 
               ) : activeIndex === 1 ? (
-                <Details colors={colors} description={description} />
+                <Details  colors = {colors}
+                sku ={sku}
+                storage = {storage}
+                memory = {memory}
+                display = {display}
+                graphicsCard = {graphicsCard}
+                processorCompany = {processorCompany}
+                processorModel = {processorModel}
+                />
               ) : (
                 <Specs colors={colors} description={description} />
               )}
