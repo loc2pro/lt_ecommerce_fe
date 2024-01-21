@@ -14,20 +14,20 @@ interface ChildComponentProps  {
 
   return (
     <div className={styled.product_detai_box}>
-      <span className={styled.product_detai_description}>{description}</span>
-      <ul className={styled.product_detai_color}>
-        {Array.isArray(colors) && colors.length > 0
-          ? colors.map((color, index) => (
-              <li
-                key={index}
-                className={activeColor === index ? styled.activeColor : ''}
-                onClick={() => addActiveColor?.(index)}
-              >
-                <span style={{ background: `${color}` }}></span>
-              </li>
-            ))
-          : null}
-      </ul>
+      <table>
+          <tr>
+            <td>CPU</td>
+            <td>NaN</td>
+          </tr>
+          <tr>
+            <td>Featured</td>
+            <td>NaN</td>
+          </tr>
+          <tr>
+            <td>I/O Ports</td>
+            <td>NaN</td>
+          </tr>
+      </table>
     </div>
   );
 };

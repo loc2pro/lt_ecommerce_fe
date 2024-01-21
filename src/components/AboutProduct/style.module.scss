@@ -28,7 +28,7 @@
 }
 .about_product_breadcrumb {
   @include flex;
-
+  cursor: pointer;
   div {
     position: relative;
     font-weight: 600;
@@ -100,7 +100,6 @@
   justify-content: center;
   width: 100%;
   .product_detai {
-    padding-top: 68px;
     width: 50%;
     background: #f5f7ff;
   }
@@ -113,13 +112,16 @@
   position: relative;
   max-width: 650px;
   margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  padding-top: 64px;
+
   h3 {
     font-size: 32px;
     font-weight: 500;
     line-height: 48px;
     margin: 24px 0 12px;
   }
-
 
   p {
     color: #0156ff;
