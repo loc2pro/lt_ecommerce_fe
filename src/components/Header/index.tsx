@@ -49,7 +49,7 @@ const Header = () => {
               Mon-Thu: <span style={{ color: 'white' }}>{openHours}</span>
             </span>
             <Image
-              src="/assets/icon/down.svg"
+              src="/assets/icon/downWhite.svg"
               alt="Down Icon"
               width={20}
               height={20}
